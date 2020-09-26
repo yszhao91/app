@@ -48,6 +48,8 @@ import { render } from './node_modules/preact/dist/preact.module.js';
 // import {testFlow} from './blockchain.js';
 // window.testFlow = testFlow;
 
+console.log(index)
+
 const zeroVector = new THREE.Vector3(0, 0, 0);
 const capsuleUpQuaternion = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 2);
 const pid4 = Math.PI / 4;

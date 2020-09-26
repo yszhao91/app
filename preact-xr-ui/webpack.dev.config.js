@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const EsmWebpackPlugin = require("@purtuga/esm-webpack-plugin");
+
 const entry = {
     index: './src/index.js',
     inventory: './src/components/Inventory.js',
@@ -13,6 +15,9 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dev'),
         filename: '[name]/[name].bundle.js',
+        library: "LIB",
+        libraryTarget: "var"
+
     },
     resolve: {
         alias: {
@@ -39,4 +44,7 @@ module.exports = {
             },
         ]
     },
+    plugins: [
+        [new EsmWebpackPlugin()]
+    ]
 };
