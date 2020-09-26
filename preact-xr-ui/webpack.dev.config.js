@@ -45,6 +45,6 @@ module.exports = {
         ]
     },
     plugins: [
-        [new EsmWebpackPlugin()]
+        new EsmWebpackPlugin()
     ]
 };
