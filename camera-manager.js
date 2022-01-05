@@ -102,6 +102,14 @@ const cameraManager = {
   getCameraOffset() {
     return cameraOffset;
   },
+  getCameraOffsetTarget() {
+    // Prevent position inside head
+    if (cameraOffsetTargetZ >= -0.5) {
+      return 0;
+    } else {
+      return cameraOffsetTargetZ;
+    }
+  },
   handleWheelEvent(e) {
     e.preventDefault();
   
@@ -166,7 +174,7 @@ const cameraManager = {
 
     
 
-    let newVal = cameraOffsetTargetZ;
+    let newVal = this.getCameraOffsetTarget();
     let hasIntersection = false;
 
 
@@ -243,6 +251,14 @@ const cameraManager = {
     // Slow zoom out if there is no intersection
     cameraOffsetZ = lerpNum(cameraOffsetZ,newVal, 0.2);
 
+    if (this.getCameraOffsetTarget() == 0) {
+      cameraOffsetZ = 0;
+    }
+
+    if (this.getCameraOffsetTarget() < -0.5 && cameraOffsetZ > -0.5) {
+      cameraOffsetZ = -0.5;
+    }
+    
     // Fast zoom in to the point of intersection
     if (hasIntersection) {
       cameraOffsetZ = newVal;
