@@ -48,7 +48,7 @@ export default () => {
     gltfLoader.load(`${import.meta.url.replace(/(\/)[^\/]*$/, '$1')}/models/grass.glb`, (gltf) => {
         const obj = gltf.scene;
         // obj.scale.multiplyScalar(0.01);
-        obj.position.y = 84
+        obj.position.y = 84.5
         obj.updateMatrixWorld(true);
         rootScene.add(obj)
 

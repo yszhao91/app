@@ -111,7 +111,7 @@ vec3 GrassStrandWPOMask(vec3 WPos,float windlineSize,sampler2D noise,vec2 uv,vec
     vec3 sgwPos=simpleGrassWind(WPos,addtionalWPO,intensity,weight,windSpeed);
     
 	float grassWindGradient=0.6;
-    float alpha=clamp((1.-uv.y)*grassWindGradient,0.,1.);
+    float alpha=clamp( uv.y *grassWindGradient,0.,1.);
     vec3 vertexOffset=mix(normal,sgwPos,alpha);
     
     return vertexOffset;
@@ -150,7 +150,7 @@ void main() {
 
 	#ifdef USE_TREE 
 		// vec3 GrassStrandWPOMask(vec3 WPos,float windlineSize,sampler2D noise,vec2 uv,float wpoAmount,float intensity,float weight,float windSpeed){
-		finalPos.xyz += GrassStrandWPOMask(mPosition.xyz,2000.0,grassNoise,uv,vec2(0.001,0.05), 1.0,windWeight,windIntensity,windSpeed);
+		finalPos.xyz += GrassStrandWPOMask(finalPos.xyz,2000.0,grassNoise,uv,vec2(0.001,0.05), 1.0,windWeight,windIntensity,windSpeed);
 	#endif
 	
 	gl_Position = finalPos;
